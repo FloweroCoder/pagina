@@ -1,0 +1,20 @@
+<form id="emailForm">
+    <input type="text" id="nome" placeholder="Nome" required>
+    <input type="email" id="email" placeholder="Email Cliente" required>
+    <textarea id="messaggio" placeholder="Messaggio"></textarea>
+    <button type="button" onclick="inviaEmail()">Invia Email</button>
+</form>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+    function inviaEmail() {
+        Email.send({
+            SecureToken: "IL_TUO_TOKEN", 
+            To: document.getElementById("email").value,
+            From: "tuaemail@esempio.com",
+            Subject: "Informazioni",
+            Body: "Ciao " + document.getElementById("nome").value + ",\n\n" + 
+                  document.getElementById("messaggio").value
+        }).then(message => alert("Email inviata con successo!"));
+    }
+</script>
